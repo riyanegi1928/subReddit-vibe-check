@@ -8,8 +8,15 @@ function App() {
   const handleSearch = async () => {
     if (!subreddit) return;
     try {
-      const response = await fetch(`http://localhost:5000/api/posts/${subreddit}`);
-      const data = await response.json();
+      const proxyUrl = "https://allorigins.win";
+const targetUrl = `https://reddit.com{subreddit}/hot.json`;
+
+const response = await fetch(proxyUrl + encodeURIComponent(targetUrl));
+const redditJson = await response.json();
+
+// Extract the array of posts from Reddit's data structure
+const data = redditJson.data.children.map(child => child.data);
+      
       setResults(data);
     } catch (error) {
       console.error("Error fetching data:", error);
