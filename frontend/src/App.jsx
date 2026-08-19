@@ -26,8 +26,9 @@ function App() {
     if (!subreddit) return;
     setLoading(true);
     try {
-      const proxyUrl = "https://allorigins.win";
-      const targetUrl = `https://reddit.com{subreddit}/hot.json?limit=50`;
+      const proxyUrl = "https://corsproxy.io";
+const targetUrl = `https://reddit.com{subreddit}/hot.json?limit=50`;
+      
       
       const response = await fetch(proxyUrl + encodeURIComponent(targetUrl));
       if (!response.ok) throw new Error('Failed to fetch data');
